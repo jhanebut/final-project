@@ -291,6 +291,8 @@ leaflet() %>%
 ```
 
 ```{r}
+
+#Creation of member summaries and membership shape files 
 spdf_world <- ne_countries()
 sf_world <- ne_countries(returnclass = "sf")
 sf_micronesia <- read_sf("micronesia")
@@ -459,6 +461,7 @@ mission_shapes_1899 <-
 
 
 ```{r}
+#Creation of American summary data
 mission_americans_totals_1884 <-
   missionaries_1884 %>% 
   group_by(region) %>% 
@@ -543,6 +546,7 @@ mission_american_colors <- colorNumeric("PuRd", domain = c(1,200))
 ```
 
 ```{r}
+#Creation of American Shape files
 american_shapes_1884 <-
   missionary_shapes %>% 
   left_join(mission_americans_totals_1884, by = "region")
@@ -1001,7 +1005,7 @@ leaflet(missionaries2_map) %>%
 addLegend("bottomleft", 
             pal = mission_member_colors, 
          values =  c(1,14000),
-    title = "Membership in ABCFM missions by Region")
+    title = "ABCFM Membership by Region")
 ```
 
 #Conclusion
