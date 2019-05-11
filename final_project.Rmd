@@ -1,0 +1,1019 @@
+---
+title: "The Geographic Distribution of the ABCFM"
+description: |
+  A quantitative analysis of the American Board of Commissioners for Foreign Missions.
+author:
+  - name: John Hanebuth
+    url: https://example.com/norajones
+    affiliation: Spacely Sprockets
+    affiliation_url: https://example.com/spacelysprokets
+date: "`May 10, 2019`"
+output: distill::distill_article
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(leaflet)
+library(sf)
+library(rnaturalearth)
+library(sp)
+missionaries <- read_csv("abcfmmissionaries_1889.csv")
+
+missioncoords <- read_csv("mission_coords.csv")
+
+missionaries2 <- read.csv("abcfm_summary.csv")
+
+missionaries2$converts <- as.numeric(missionaries2$converts)
+```
+The history of the American Board of Commissioners for Foreign Missions (ABCFM) has either been overemphasized or underemphasized in the historical cannon of the golden age of imperialism from 1884-1899. The mission itself never attracted greater than 600 missionaries abroad. The total membership of the mission globally, all converts who became members of the church and were recorded as such, never amounted to more than 40,000. However, despite the small size of the membership and missionary roles in comparison to the magnitutde of the Catholic missionary effort several centuries before, the ABCFM at the end of the nineteenth century embodied a global influence. However, the historical profession and popular society largely considers China as the primary destination the missionaries in general and the ABCFM specifically. In fact, missionaries themselves saw China as the golden project of the organization (INSERT MARY LOGAN Quote). 
+
+Extracting the summary statistics of the Annual Reports of the American Board of Commissioners for Foreign Missions from 1884-1899, a quantitative analysis of the Board pushes back on the notion of missionary abundance in China to force historians to acknowledge how the geographic centers of the Board missions were in previously unrecognized areas. These areas while not normally associated with the Board do appear sporadically but not as areas where missionaries found sustained success. In turn, this deduction has implications for students of the ABCFM and American international history broadly. By illustrating the ABCFM’s presence globally and focusing on specific levels of high activity in previously neglected geographic nodes, this paper hopes to illustrate a rationale as to why Japan and Turkey should become prominent regions of consideration when discussing the ABCFM and why the institution as a whole must be evaluated through a global lens.
+
+
+```{r, echo = FALSE}
+
+missionaries2 %>% 
+  group_by(year) %>% 
+  mutate(total_americans = male_missionaries + female_assistant.missionaries + other_workers) %>% 
+  summarize(americans = sum(total_americans, na.rm = TRUE), total_members = sum(members, na.rm = TRUE)) %>% 
+  ggplot(aes(x = year))+
+  geom_line(aes(y = total_members))+
+  labs(
+                title = paste("Summary of ABCFM International Membership"),
+                   subtitle = paste("From 1884-1899"),
+                     caption = "Figure1:The summary of members in ABCFM missions appears above.")
+
+              
+missionaries2 %>% 
+  group_by(year) %>% 
+  mutate(total_americans = male_missionaries + female_assistant.missionaries + other_workers) %>% 
+  summarize(americans = sum(total_americans, na.rm = TRUE), total_members = sum(members, na.rm = TRUE)) %>% 
+  ggplot(aes(x = year))+
+  geom_line(aes(y = americans))+
+  labs(
+                title = paste("Summary of American ABCFM missionaries in all International Missions"),
+                   subtitle = paste("From 1884-1899"),
+                     caption = "Figure2:The summary of Americans in ABCFM missions appears above.")
+
+
+
+
+#add labels
+```
+fig.cap(Figure1:The summary of members in ABCFM missions appears above.)
+
+```{r, echo = FALSE}
+missionaries2 %>% 
+  mutate(total_americans = male_missionaries + female_assistant.missionaries + other_workers) %>% 
+  filter( total_americans > 10) %>% 
+  group_by(year) %>% 
+  ggplot(aes(x = year))+
+  geom_line(aes(y = total_americans))+
+  facet_wrap(~mission_name)+
+  labs(
+                title = paste("Number of American missionaries in ABCFM Missions that had a total of over 10 Americans present "),
+                   subtitle = paste("From 1884-1899"),
+                     caption = "Figure3:The number of Americans in select missions. Any breaks in years are due to data being unavailable for those years.")
+
+```
+
+```{r, echo=FALSE}
+regions <- data_frame(
+  mission_name = c("Zulu", "West Central Africa", "East Central Africa", "European Turkey", "Western Turkey", "Central Turkey", "Eastern Turkey", "Maratha", "Madura", 
+             "Ceylon", "Foochow", "North China","Hong Kong", "Shanse",
+             "Japan", "Northern Japan", "Micronesia",
+             "Western Mexico", "Northern Mexico", "Mexico", "Spain", "Austria",
+             "Hawaii"),
+  region = c("South Africa", "Angola", "Zambia", "Turkey",
+             "Bulgaria", "Turkey", "Turkey", "India", "India",
+             "Sri Lanka", "China", "China", "China", "China",
+             "Japan", "Japan", " Federated States of Micronesia", "Mexico", "Mexico",
+             "Mexico", "Spain", "Czech Republic","USA")
+)
+```
+
+```{r, echo = FALSE}
+missionaries2_map <-
+  missionaries2 %>% 
+  select(year, mission_name, members, male_missionaries, female_assistant.missionaries, native_pastors, native_agents, other_workers) %>%
+  mutate(total_americans = male_missionaries + female_assistant.missionaries + other_workers) %>% 
+  left_join(missioncoords, by = "mission_name") %>% 
+  left_join(regions, by = "mission_name")
+
+missionaries_1884 <-
+  missionaries2_map %>% 
+  filter(year == 1884)
+
+missionaries_1885 <-
+  missionaries2_map %>% 
+  filter(year == 1885)
+
+missionaries_1886 <-
+missionaries2_map %>% 
+  filter(year == 1886)
+
+missionaries_1887<-
+missionaries2_map %>% 
+  filter(year == 1887)
+
+missionaries_1888 <-
+missionaries2_map %>% 
+  filter(year == 1888)
+
+missionaries_1889 <-
+missionaries2_map %>% 
+  filter(year == 1889)
+
+missionaries_1890 <-
+missionaries2_map %>% 
+  filter(year == 1890)
+
+missionaries_1891 <-
+missionaries2_map %>% 
+  filter(year == 1891)
+
+missionaries_1892 <-
+missionaries2_map %>% 
+  filter(year == 1892)
+
+missionaries_1893 <-
+missionaries2_map %>% 
+  filter(year == 1893)
+
+missionaries_1894 <-
+missionaries2_map %>% 
+  filter(year == 1894)
+
+missionaries_1895 <-
+missionaries2_map %>% 
+  filter(year == 1895)
+
+missionaries_1896 <-
+missionaries2_map %>% 
+  filter(year == 1896)
+
+missionaries_1897 <-
+missionaries2_map %>% 
+  filter(year == 1897)
+
+missionaries_1898 <-
+missionaries2_map %>% 
+  filter(year == 1898)
+
+
+missionaries_1899 <-
+missionaries2_map %>% 
+  filter(year == 1899)
+```
+
+
+
+#Levels of Americans
+
+At first glance, the levels of American missionaries indicate  little more than a large presence of American missionaries worldwide. However, when one addresses the physical locations of these missionaries the expansive nature of the ABCFM as a global force shines clearly with the visualization of over 500 missionaries in 21 separate missions across 4 continents and Oceania. In their highest concentrations, the numbers of American missionaries indicate the level of interest the ABCFM theoretically had in that specific mission. For example, until 1893, the largest regional concentration of American missionaries was the Ottoman Empire. However, the Turkish missions barely enter the historical record during this time period. With two notable exceptions. In the context of the Armenian genocide historians acknowledge the presence of American Board missionaries as correspondents chronicling the event.  In another vein, the American presence in the Middle East in the form of the American University in Beirut has received considerable attention, and in an offshoot the creation of theoretical spaces to articulate Arab and American sentiments and for Arab Christians and American Evangelicals to commingle received attention in Artillery of Heaven.  Despite these references to the American missionaries in the Middle East, the sheer volume of missionaries in the areas then controlled by the Ottoman Empire deserve consideration as the largest regional concentration of ABCFM missionaries. Though this intrinsically matters to historians of the American Board it should also matter to American international historians. 
+
+Despite the truism, that missionaries are not western imperialists, the connections between American missionaries and the western civilizing mission remain pronounced when considering the missionary enterprise in totality. Therefore the significant presence of ABCFM missionaries in Turkey should lead historians to investigate the level of American activity in Turkey during the 1880s and 1890s.
+
+In an acknowledgement of the activity of the Chinese missions, 1893 marked a switch in the height of American Board missionary presence from Turkey to China. After this point, the greatest regional concentration did shift to China, but Turkey still remained the second or third largest concentration of missionaries, depending on the report year, for the remainder of this select time period.  
+
+As a region and a specific mission the Japanese mission alternated between second and third most populated mission with Turkey from 1893-1899. Yet, when we look at this concentration by specific missions a more nuanced version of the regional statistics come into view. In this picture of American Board activity, the Japanese mission comes into view as the largest concentration of Americans from 1887 thru to 1899. The level of American presence in Japan saw expansive rises in the late 1880s and remained high after that point. Scholars have attributed this to 
+
+
+```{r}
+missionsize2 <- function(x, max_radius = 10) {x %>% 
+    sqrt()%>% 
+    scales::rescale_max(to = c(0, max_radius))}
+
+
+leaflet() %>% 
+  addTiles() %>% 
+  addCircleMarkers( data = missionaries_1884,
+                    radius = ~missionsize2(total_americans),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ",total_americans),
+                   group = "1884",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1885,
+                    radius = ~missionsize2(total_americans),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, year, ": ", members),
+                   group = "1885",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1886,
+                    radius = ~missionsize2(total_americans),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1886",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1887,
+                    radius = ~missionsize2(total_americans),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1887",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1888,
+                    radius = ~missionsize2(total_americans),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1888",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1889,
+                    radius = ~missionsize2(total_americans),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1889",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1890,
+                    radius = ~missionsize2(total_americans),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1890",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1891,
+                    radius = ~missionsize2(total_americans),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1891",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1892,
+                    radius = ~missionsize2(total_americans),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1892",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1893,
+                    radius = ~missionsize2(total_americans),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1893",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1894,
+                    radius = ~missionsize2(total_americans),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1894",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1895,
+                    radius = ~missionsize2(total_americans),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1895",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1896,
+                    radius = ~missionsize2(total_americans),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1896",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1897,
+                    radius = ~missionsize2(total_americans),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1897",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1898,
+                    radius = ~missionsize2(total_americans),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", total_americans),
+                   group = "1898",
+                   color = "red") %>% 
+  addCircleMarkers( data = missionaries_1899,
+                    radius = ~missionsize2(total_americans),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", total_americans),
+                   group = "1899",
+                   color = "red") %>% 
+  addLayersControl(
+  baseGroups =  c("1884", "1885","1886", "1887", "1888", "1889", "1890", "1891", "1892", "1893", "1894", "1895", "1896", "1897", "1898", "1899")) 
+
+```
+
+```{r}
+spdf_world <- ne_countries()
+sf_world <- ne_countries(returnclass = "sf")
+sf_micronesia <- read_sf("micronesia")
+
+st_crs(sf_world) <- 4324
+st_crs(sf_micronesia) <- 4324
+
+names(sf_micronesia) <- names(sf_world) 
+sf_missionary_world <-
+rbind(sf_world, sf_micronesia)
+
+missionary_shapes <- sf_missionary_world %>% 
+  left_join(missionaries2_map, by = "name_long") 
+  
+
+mission_member_totals <- 
+  missionaries2_map %>% 
+  group_by(region) %>% 
+  summarize(members = sum(members, na.rm = TRUE)) 
+
+mission_member_totals_1884 <-
+  missionaries_1884 %>% 
+  group_by(region) %>% 
+  summarize(members = sum(members, na.rm = TRUE))
+
+mission_member_totals_1885 <-
+  missionaries_1885 %>% 
+  group_by(region) %>% 
+  summarize(members = sum(members, na.rm = TRUE))
+
+mission_member_totals_1886 <-
+  missionaries_1886 %>% 
+  group_by(region) %>% 
+  summarize(members = sum(members, na.rm = TRUE))
+
+mission_member_totals_1887 <-
+  missionaries_1887 %>% 
+  group_by(region) %>% 
+  summarize(members = sum(members, na.rm = TRUE))
+
+mission_member_totals_1888 <-
+  missionaries_1888 %>% 
+  group_by(region) %>% 
+  summarize(members = sum(members, na.rm = TRUE))
+
+mission_member_totals_1889 <-
+  missionaries_1889 %>% 
+  group_by(region) %>% 
+  summarize(members = sum(members, na.rm = TRUE))
+
+mission_member_totals_1890 <-
+  missionaries_1890 %>% 
+  group_by(region) %>% 
+  summarize(members = sum(members, na.rm = TRUE))
+
+mission_member_totals_1891 <-
+  missionaries_1891 %>% 
+  group_by(region) %>% 
+  summarize(members = sum(members, na.rm = TRUE))
+
+mission_member_totals_1892 <-
+  missionaries_1892 %>% 
+  group_by(region) %>% 
+  summarize(members = sum(members, na.rm = TRUE))
+
+mission_member_totals_1893 <-
+  missionaries_1893 %>% 
+  group_by(region) %>% 
+  summarize(members = sum(members, na.rm = TRUE))
+
+mission_member_totals_1894 <-
+  missionaries_1894 %>% 
+  group_by(region) %>% 
+  summarize(members = sum(members, na.rm = TRUE))
+
+mission_member_totals_1895 <-
+  missionaries_1895 %>% 
+  group_by(region) %>% 
+  summarize(members = sum(members, na.rm = TRUE))
+
+mission_member_totals_1896 <-
+  missionaries_1896 %>% 
+  group_by(region) %>% 
+  summarize(members = sum(members, na.rm = TRUE))
+
+mission_member_totals_1897 <-
+  missionaries_1897 %>% 
+  group_by(region) %>% 
+  summarize(members = sum(members, na.rm = TRUE))
+
+mission_member_totals_1898 <-
+  missionaries_1898 %>% 
+  group_by(region) %>% 
+  summarize(members = sum(members, na.rm = TRUE))
+
+mission_member_totals_1899 <-
+  missionaries_1899 %>% 
+  group_by(region) %>% 
+  summarize(members = sum(members, na.rm = TRUE))
+
+mission_shapes_1884 <-
+  missionary_shapes %>% 
+  left_join(mission_member_totals_1884, by = "region")
+
+mission_shapes_1885 <-
+  missionary_shapes %>% 
+  left_join(mission_member_totals_1885, by = "region")
+
+mission_shapes_1886 <-
+  missionary_shapes %>% 
+  left_join(mission_member_totals_1886, by = "region")
+
+mission_shapes_1887 <-
+  missionary_shapes %>% 
+  left_join(mission_member_totals_1887, by = "region")
+
+mission_shapes_1888 <-
+  missionary_shapes %>% 
+  left_join(mission_member_totals_1888, by = "region")
+
+mission_shapes_1889 <-
+  missionary_shapes %>% 
+  left_join(mission_member_totals_1889, by = "region")
+
+mission_shapes_1890 <-
+  missionary_shapes %>% 
+  left_join(mission_member_totals_1890, by = "region")
+
+mission_shapes_1891 <-
+  missionary_shapes %>% 
+  left_join(mission_member_totals_1891, by = "region")
+
+mission_shapes_1892 <-
+  missionary_shapes %>% 
+  left_join(mission_member_totals_1892, by = "region")
+
+mission_shapes_1893 <-
+  missionary_shapes %>% 
+  left_join(mission_member_totals_1893, by = "region")
+
+mission_shapes_1894 <-
+  missionary_shapes %>% 
+  left_join(mission_member_totals_1894, by = "region")
+
+mission_shapes_1895 <-
+  missionary_shapes %>% 
+  left_join(mission_member_totals_1895, by = "region")
+
+mission_shapes_1896 <-
+  missionary_shapes %>% 
+  left_join(mission_member_totals_1896, by = "region")
+
+mission_shapes_1897 <-
+  missionary_shapes %>% 
+  left_join(mission_member_totals_1897, by = "region")
+
+mission_shapes_1898 <-
+  missionary_shapes %>% 
+  left_join(mission_member_totals_1898, by = "region")
+
+mission_shapes_1899 <-
+  missionary_shapes %>% 
+  left_join(mission_member_totals_1899, by = "region")
+```
+
+
+
+```{r}
+mission_americans_totals_1884 <-
+  missionaries_1884 %>% 
+  group_by(region) %>% 
+  summarize(americans = sum(total_americans, na.rm = TRUE))
+
+mission_americans_totals_1885 <-
+  missionaries_1885 %>% 
+  group_by(region) %>% 
+  summarize(americans = sum(total_americans, na.rm = TRUE))
+
+mission_americans_totals_1886 <-
+  missionaries_1886 %>% 
+  group_by(region) %>% 
+  summarize(americans = sum(total_americans, na.rm = TRUE))
+
+mission_americans_totals_1887 <-
+  missionaries_1887 %>% 
+  group_by(region) %>% 
+  summarize(americans = sum(total_americans, na.rm = TRUE))
+
+mission_americans_totals_1888 <-
+  missionaries_1888 %>% 
+  group_by(region) %>% 
+  summarize(americans = sum(total_americans, na.rm = TRUE))
+
+mission_americans_totals_1889 <-
+  missionaries_1889 %>% 
+  group_by(region) %>% 
+  summarize(americans = sum(total_americans, na.rm = TRUE))
+
+mission_americans_totals_1890 <-
+  missionaries_1890 %>% 
+  group_by(region) %>% 
+  summarize(americans = sum(total_americans, na.rm = TRUE))
+
+mission_americans_totals_1891 <-
+  missionaries_1891 %>% 
+  group_by(region) %>% 
+  summarize(americans = sum(total_americans, na.rm = TRUE))
+
+mission_americans_totals_1892 <-
+  missionaries_1892 %>% 
+  group_by(region) %>% 
+  summarize(americans = sum(total_americans, na.rm = TRUE))
+
+mission_americans_totals_1893 <-
+  missionaries_1893 %>% 
+  group_by(region) %>% 
+  summarize(americans = sum(total_americans, na.rm = TRUE))
+
+mission_americans_totals_1894 <-
+  missionaries_1894 %>% 
+  group_by(region) %>% 
+  summarize(americans = sum(total_americans, na.rm = TRUE))
+
+mission_americans_totals_1895 <-
+  missionaries_1895 %>% 
+  group_by(region) %>% 
+  summarize(americans = sum(total_americans, na.rm = TRUE))
+
+mission_americans_totals_1896 <-
+  missionaries_1896 %>% 
+  group_by(region) %>% 
+  summarize(americans = sum(total_americans, na.rm = TRUE))
+
+mission_americans_totals_1897 <-
+  missionaries_1897 %>% 
+  group_by(region) %>% 
+  summarize(americans = sum(total_americans, na.rm = TRUE))
+
+mission_americans_totals_1898 <-
+  missionaries_1898 %>% 
+  group_by(region) %>% 
+  summarize(americans = sum(total_americans, na.rm = TRUE))
+
+mission_americans_totals_1899 <-
+  missionaries_1899 %>% 
+  group_by(region) %>% 
+  summarize(americans = sum(total_americans, na.rm = TRUE))
+
+mission_american_colors <- colorNumeric("PuRd", domain = c(1,200))
+```
+
+```{r}
+american_shapes_1884 <-
+  missionary_shapes %>% 
+  left_join(mission_americans_totals_1884, by = "region")
+
+american_shapes_1885 <-
+  missionary_shapes %>% 
+  left_join(mission_americans_totals_1885, by = "region")
+
+american_shapes_1886 <-
+  missionary_shapes %>% 
+  left_join(mission_americans_totals_1886, by = "region")
+
+american_shapes_1887 <-
+  missionary_shapes %>% 
+  left_join(mission_americans_totals_1887, by = "region")
+
+american_shapes_1888 <-
+  missionary_shapes %>% 
+  left_join(mission_americans_totals_1888, by = "region")
+
+american_shapes_1889 <-
+  missionary_shapes %>% 
+  left_join(mission_americans_totals_1889, by = "region")
+
+american_shapes_1890 <-
+  missionary_shapes %>% 
+  left_join(mission_americans_totals_1884, by = "region")
+
+american_shapes_1891 <-
+  missionary_shapes %>% 
+  left_join(mission_americans_totals_1891, by = "region")
+
+american_shapes_1892 <-
+  missionary_shapes %>% 
+  left_join(mission_americans_totals_1892, by = "region")
+
+american_shapes_1893 <-
+  missionary_shapes %>% 
+  left_join(mission_americans_totals_1893, by = "region")
+
+american_shapes_1894 <-
+  missionary_shapes %>% 
+  left_join(mission_americans_totals_1894, by = "region")
+
+american_shapes_1895 <-
+  missionary_shapes %>% 
+  left_join(mission_americans_totals_1895, by = "region")
+
+american_shapes_1896 <-
+  missionary_shapes %>% 
+  left_join(mission_americans_totals_1896, by = "region")
+
+american_shapes_1897 <-
+  missionary_shapes %>% 
+  left_join(mission_americans_totals_1897, by = "region")
+
+american_shapes_1898 <-
+  missionary_shapes %>% 
+  left_join(mission_americans_totals_1898, by = "region")
+
+american_shapes_1899 <-
+  missionary_shapes %>% 
+  left_join(mission_americans_totals_1899, by = "region")
+```
+
+```{r}
+leaflet() %>% 
+  addTiles() %>% 
+  addPolygons(data = american_shapes_1884,
+    fillColor = ~mission_american_colors(american_shapes_1884$americans),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+              group = "1884",
+              popup = ~paste0(region, ":", americans)) %>% 
+  addPolygons(data = american_shapes_1885,
+    fillColor = ~mission_american_colors(american_shapes_1885$americans),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+              group = "1885",
+              popup = ~paste0(region, ":", americans)) %>% 
+  addPolygons(data = american_shapes_1886,
+    fillColor = ~mission_american_colors(american_shapes_1886$americans),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+              group = "1886",
+              popup = ~paste0(region, ":", americans)) %>% 
+  addPolygons(data = american_shapes_1887,
+    fillColor = ~mission_american_colors(american_shapes_1887$americans),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+              group = "1887",
+              popup = ~paste0(region, ":", americans)) %>% 
+  addPolygons(data = american_shapes_1888,
+    fillColor = ~mission_american_colors(american_shapes_1888$americans),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+              group = "1888",
+              popup = ~paste0(region, ":", americans)) %>% 
+  addPolygons(data = american_shapes_1889,
+    fillColor = ~mission_american_colors(american_shapes_1889$americans),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+              group = "1889",
+              popup = ~paste0(region, ":", americans)) %>% 
+  addPolygons(data = american_shapes_1890,
+    fillColor = ~mission_american_colors(american_shapes_1890$americans),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+              group = "1890",
+              popup = ~paste0(region, ":", americans)) %>% 
+  addPolygons(data = american_shapes_1891,
+    fillColor = ~mission_american_colors(american_shapes_1891$americans),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+              group = "1891",
+              popup = ~paste0(region, ":", americans)) %>% 
+  addPolygons(data = american_shapes_1892,
+    fillColor = ~mission_american_colors(american_shapes_1892$americans),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+              group = "1892",
+              popup = ~paste0(region, ":", americans)) %>% 
+   addPolygons(data = american_shapes_1893,
+    fillColor = ~mission_american_colors(american_shapes_1893$americans),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+              group = "1893",
+              popup = ~paste0(region, ":", americans)) %>% 
+   addPolygons(data = american_shapes_1894,
+    fillColor = ~mission_american_colors(american_shapes_1894$americans),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+              group = "1894",
+              popup = ~paste0(region, ":", americans)) %>% 
+   addPolygons(data = american_shapes_1895,
+    fillColor = ~mission_american_colors(american_shapes_1895$americans),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+              group = "1895",
+              popup = ~paste0(region, ":", americans)) %>% 
+   addPolygons(data = american_shapes_1896,
+    fillColor = ~mission_american_colors(american_shapes_1896$americans),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+              group = "1896",
+              popup = ~paste0(region, ":", americans)) %>% 
+   addPolygons(data = american_shapes_1897,
+    fillColor = ~mission_american_colors(american_shapes_1897$americans),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+              group = "1897",
+              popup = ~paste0(region, ":", americans)) %>% 
+   addPolygons(data = american_shapes_1898,
+    fillColor = ~mission_american_colors(american_shapes_1898$americans),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+              group = "1898",
+              popup = ~paste0(region, ":", americans)) %>% 
+   addPolygons(data = american_shapes_1899,
+    fillColor = ~mission_american_colors(american_shapes_1899$americans),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+              group = "1899",
+              popup = ~paste0(region, ":", americans)) %>% 
+  addLayersControl(
+    baseGroups = c("1884", "1885","1886", "1887", "1888", "1889", "1890", "1891", "1892", "1893", "1894", "1895", "1896", "1897", "1898", "1899")
+  ) %>% 
+addLegend("bottomleft", 
+            pal = mission_american_colors, 
+         values =  c(0,200),
+    title = "ABCFM American Presence by Region"
+    )
+```
+#Levels of Membership:
+
+```{r, echo=FALSE}
+missionaries2 %>% 
+  filter(members > 1000) %>% 
+  group_by(year) %>% 
+  ggplot(aes(x = year))+
+  geom_line(aes(y = members))+
+  facet_wrap(~mission_name)+
+  labs(
+                title = paste("Membership in Individual Missions"),
+                   subtitle = paste("Changes in Mission Membership by Individual mission From 1884-1899"),
+                     caption = "Figure5:The membership of individual missions from 1884-1899.")
+
+missionaries2 %>% 
+  group_by(mission_name) %>%
+  mutate(growth = members - lag(members)) %>% 
+  ggplot(aes(x = year))+
+  geom_line(aes( y = growth))+
+  facet_wrap(~mission_name)+
+  labs(
+        title = paste("Individual mission growth"),
+         subtitle = paste("From 1884-1899"),
+        caption = "Figure6:The growth of membership.")
+
+```
+
+As Specific mission stations, the American Board mission to Japan also attracted the most members. Following an exponential rise in membership during the 1880s, the membership of the Japan mission peaked in 1893 at over 12,000 members, by far the largest American Board mission. This figure surpassed all other missions during this period and comprised over 20 percent of the total membership the ABCFM attracted internationally. The membership decreased in 1894 to coincide with the First Sino-Japanese War indicating that ABCFM members likely were conscripted into service in the Imperial army which raises the query of whether Japanese Christians who took part in the First-Sino Japanese war helped to bring Christianity to Korea. However, in reviewing these numbers and the presence of the American Board in Japan, historians should reevaluate their notions of Japanese religious attitudes and of the spaces in which Japanese citizens pursued Westernization.
+
+In perhaps the most dramatic mission station, Micronesia saw losses and gains in membership that reflected the turbulent nature of the mission. Over a 16 year period, the Micronesia mission gained over 1000 members in two different years and lost 1000 members in two separate years. With these dramatic changes in membership the actual progress of the mission and the interpersonal dynamics of the missionary community deserve further attention to illuminate these drastic increases.
+
+If levels of membership are analyzed at the regional level, Turkey parallels the high regional concentration of American missionaries with a high number of native converts who remained members in the mission. These membership levels remained relatively constant around 10,000 members throughout the period. In conjunction with the realization that growth of the Turkish missions remained relatively negligible throughout the period this level of membership demonstrates that the membership of the Turkish missions remained constant. In another historically significant region for membership, India emerges as a consistently populated region of the ABCFM mission. The low level of Americans in this region raises the idea of successful transference of control of the mission to native authorities but it was not as successful as the mission to Hawaii had been considering the complete divestment of ABCFM authority to the HBCFM by this point. An important consideration to keep in mind when considering the Turkish missions and the Indian missions remains the longevity of missions. When one considers the length of time the American Board had retained a presence in Turkey – since 1819, the large presence of Americans becomes less astounding and the level of members even less so.  Complementing this discussion, the mission to India had been in effect since the earlier nineteenth century.  The consideration of mission longevity though making the presence of large convert groups in Turkey and India does not negate the importance of the size of these American Board communities. In fact, the deduction makes it all the more astounding that almost a century later, the American board still needed close to 100 American missionaries to staff missions in the Ottoman Empire, and a significant number of Americans to remain in India. 
+
+In contrast to the large populations produced by the long-lived missions in the regions of India and Turkey, the mission to South Africa dated back to 1830 and though seeing a dramatic increase at the end of the nineteenth century did not have the dense population the other two regions possessed, though this is primarily due to the population density of Kwa-Zulu Natal and the multiplicity of missions in the first two sections. South Africa’s mission lack of parity with the Turkish mission and the Indian missions becomes less astonishing in this light, but does draw into question the mechanisms of mission used in South Africa and the effectiveness of those missions in comparison to other mission locales.
+
+China in contrast emerges as a mission just as one of the youngest missions in the ABCFM fold, its budding level of membership then does not awe the viewer nor should it underwhelm the viewer. At the end of the sixteen year period analyzed above, China had a total regional membership role in the range of 6000. The mission does not have the dramatic rises and falls of the Japanese mission; instead, the steady growth reveals a mission similar to the stalwarts of the ABCFM institutional memory. That being said, the four Chinese missions did include two astonishingly small member rolls in Hong Kong and Shanse. Shanse, in fact had fewer members than missionaries for a number of its years in existence. Though it is unfair to judge a new mission on the basis of established mission statistic, the disparity in numbers highlights the minimal size of conversions in China to the ABCFM during this period. The relatively small to middling size of Chinese mission stations then stands in contrast to the popular notion of China as the center for American missionary activity (in the instance of the ABCFM). However, in the context of the ABCFM on a whole, the level of membership drives a new evaluation of the ABCFM missions in relation to other missions within the wider community.
+
+```{r, echo = FALSE}
+missionsize <- function(x, max_radius = 25) {x %>% 
+    sqrt()%>% 
+    scales::rescale_max(to = c(0, max_radius))}
+
+leaflet() %>% 
+  addTiles() %>% 
+  addCircleMarkers( data = missionaries_1884,
+                    radius = ~missionsize(missionaries_1884$members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1884",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1885,
+                    radius = ~missionsize(missionaries_1885$members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, year, ": ", members),
+                   group = "1885",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1886,
+                    radius = ~missionsize(members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1886",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1887,
+                    radius = ~missionsize(members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1887",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1888,
+                    radius = ~missionsize(members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1888",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1889,
+                    radius = ~missionsize(members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1889",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1890,
+                    radius = ~missionsize(members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1890",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1891,
+                    radius = ~missionsize(members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1891",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1892,
+                    radius = ~missionsize(members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1892",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1893,
+                    radius = ~missionsize(members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1893",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1894,
+                    radius = ~missionsize(members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1894",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1895,
+                    radius = ~missionsize(members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1895",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1896,
+                    radius = ~missionsize(members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1896",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1897,
+                    radius = ~missionsize(members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1897",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1898,
+                    radius = ~missionsize(members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1898",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1899,
+                    radius = ~missionsize(members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1899",
+                   color = "blue") %>% 
+  addLayersControl(
+  baseGroups =  c("1884", "1885","1886", "1887", "1888", "1889", "1890", "1891", "1892", "1893", "1894", "1895", "1896", "1897", "1898", "1899"))
+  
+```
+
+```{r, echo = FALSE}
+mission_member_colors <- colorNumeric("PuRd", domain = c(0, 14000))
+
+
+leaflet(missionaries2_map) %>% 
+  addTiles() %>% 
+  addPolygons(data = mission_shapes_1884,
+    fillColor = ~mission_member_colors(mission_shapes_1884$members.y),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+    group = "1884",
+              popup = ~paste0(region, ":", members.y)) %>%  
+  addPolygons(data = mission_shapes_1885,
+              fillColor = ~mission_member_colors(mission_shapes_1885$members.y),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+              group = "1885",
+              popup = ~paste0(region, ":", members.y)) %>% 
+  addPolygons(data = mission_shapes_1886,
+    fillColor = ~mission_member_colors(mission_shapes_1886$members.y),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+    group = "1886",
+              popup = ~paste0(region, ":", members.y)) %>% 
+  addPolygons(data = mission_shapes_1887,
+    fillColor = ~mission_member_colors(mission_shapes_1887$members.y),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+    group = "1887",
+              popup = ~paste0(region, ":", members.y)) %>% 
+  addPolygons(data = mission_shapes_1888,
+    fillColor = ~mission_member_colors(mission_shapes_1888$members.y),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+    group = "1888",
+              popup = ~paste0(region, ":", members.y)) %>% 
+  addPolygons(data = mission_shapes_1889,
+    fillColor = ~mission_member_colors(mission_shapes_1889$members.y),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+    group = "1889",
+              popup = ~paste0(region, ":", members.y)) %>% 
+  addPolygons(data = mission_shapes_1890,
+    fillColor =~mission_member_colors(mission_shapes_1890$members.y),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+    group = "1890",
+              popup = ~paste0(region, ":", members.y)) %>%   
+  addPolygons(data = mission_shapes_1891,
+    fillColor = ~mission_member_colors(mission_shapes_1891$members.y),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+    group = "1891",
+              popup = ~paste0(region, ":", members.y)) %>% 
+  addPolygons(data = mission_shapes_1892,
+    fillColor = ~mission_member_colors(mission_shapes_1892$members.y),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+    group = "1892",
+              popup = ~paste0(region, ":", members.y)) %>%   
+  addPolygons(data = mission_shapes_1893,
+    fillColor = ~mission_member_colors(mission_shapes_1893$members.y),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+    group = "1893",
+              popup = ~paste0(region, ":", members.y)) %>% 
+  addPolygons(data = mission_shapes_1894,
+    fillColor = ~mission_member_colors(mission_shapes_1894$members.y),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+    group = "1894",
+              popup = ~paste0(region, ":", members.y)) %>% 
+  addPolygons(data = mission_shapes_1895,
+    fillColor = ~mission_member_colors(mission_shapes_1895$members.y),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+    group = "1895",
+              popup = ~paste0(region, ":", members.y)) %>% 
+  addPolygons(data = mission_shapes_1896,
+    fillColor = ~mission_member_colors(mission_shapes_1896$members.y),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+    group = "1896",
+              popup = ~paste0(region, ":", members.y)) %>% 
+  addPolygons(data = mission_shapes_1897,
+    fillColor =~mission_member_colors(mission_shapes_1897$members.y),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+    group = "1897",
+              popup = ~paste0(region, ":", members.y)) %>% 
+  addPolygons(data = mission_shapes_1898,
+    fillColor = ~mission_member_colors(mission_shapes_1898$members.y),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+    group = "1898",
+              popup = ~paste0(region, ":", members.y)) %>%
+  addPolygons(data = mission_shapes_1899,
+              fillColor = ~mission_member_colors(mission_shapes_1899$members.y),
+              fillOpacity = 5,
+              color = "black", weight = 1,
+              label = ~regions,
+              group = "1899",
+              popup = ~paste0(region, ":", members.y)) %>% 
+   addLayersControl(
+    baseGroups = c("1884", "1885","1886", "1887", "1888", "1889", "1890", "1891", "1892", "1893", "1894", "1895", "1896", "1897", "1898", "1899")
+  ) %>% 
+addLegend("bottomleft", 
+            pal = mission_member_colors, 
+         values =  c(1,14000),
+    title = "Membership in ABCFM missions by Region")
+```
+
+#Conclusion
+
+Whether it be Christian communities in Micronesia, schools still in existent in South Africa, or American Colleges in the Middle East, the ABCFM left its mark on the cultures of the regions it attempted to convert to Congregational Christianity ^(Footnote 1: ). The levels of Americans and the levels of indigenous Christians produced by the ABCFM produce results that have historical implications for three fields. In demonstrating the sheer size of the mission from the perspectives of both the American and target areas of conversion points of view, thus historians who discount missionaries as a minor player must contend with the results of the missions whereby over 40,000 and close to 50,000 members had joined ABCFM congregations as full congregationalist members. Meanwhile, the field of American international history must acknowledge the surprising disposition of the ABCFM missionaries and investigate the high concentration of American missionaries in the Mediterranean and in Japan. Lastly, the wide geographic disbursement of the missions and the ebbs and flows of the mission force historians to acknowledge the global nature of the ABCFM mission as they move forward. 
+
+
+Distill is a publication format for scientific and technical writing, native to the web. 
+
+Learn more about using Distill for R Markdown at <https://rstudio.github.io/distill>.
+
+
+
+
+
