@@ -27,10 +27,7 @@ missionaries2 <- read.csv("abcfm_summary.csv")
 
 missionaries2$converts <- as.numeric(missionaries2$converts)
 ```
-The American Board of Commissioners for Foreign Missions or the ABCFM was an American missionary organization that attempted to convert first the American continent and later launched a global effort to convert populations around the globe to Christianity. Though an evangelist institution, the ABCFM eventually found its most effective method at conversion was through schooling, and as such, its missionaries founded schools and colleges throughout the world. Originally an ecumenical organization, by the time of the Berlin Conference of 1884 (an event which only by happenstance coincides with the time period addressed below) the ABCFM had shifted to a Congregationalist approach. The mission itself never attracted greater than 600 missionaries abroad while the total membership of the mission globally – namely all converts who became members of the church and were recorded as such – had not eclipsed 50,000 by 1899. Despite the small size of the membership and missionary roles in comparison to the magnitude of the Catholic missionary effort several centuries before, the ABCFM at the end of the nineteenth century projected a global influence. The popular imagination has attached China to this global network while the historical profession has investigated specific ABCFM missions and universities, with recent work focusing on transnational connections and the global network, but the history of the ABCFM has yet to be told as a narrative of a global network with limited, fixed resources whose distribution was a contested issue from the perspective of missionaries abroad and the Board at home. In fact, missionaries saw themselves as part of a global enterprise with fixed resources that they needed to advocate for in competition with other missions within the network. Mary Logan, a female missionary to Chuuk during the 1880s and 1890s, advocated for the Micronesia mission in a letter to the corresponding secretary of the ABCFM, Judson Smith, arguing that another missionary couple should be “sav[ed] for Ponape” rather than sent to Mexico.^[Mary Logan letter to Judson Smith Nov 10, 1894. Micronesia Mission (ABC 19.4); Vol 12; Micronesia Mission; Letters L-P. Microfilm Reel 849. American Board of Commissioners for Foreign Missions Archives, 1810-1961 (ABC 1-91) Houghton Library, Harvard University.]  
-
-Based on summary statistics extracted from the Annual Reports of the American Board of Commissioners for Foreign Missions from 1884-1899, a quantitative analysis of the Board pushes back on the notion of missionary abundance in China to force historians to acknowledge how the numerical centers of Board activity occurred in stations that do not receive recognition as centers of conversion.^[The data comes from a reading of the American Board Annual Reports from 1884-1899. For Specific mentions see: ] In turn, this deduction has implications for students of the ABCFM and American international history broadly. By illustrating the ABCFM’s presence globally and focusing on specific levels of high activity in previously neglected geographic nodes, this paper hopes to illustrate a rationale as to why Japan and Turkey should become more prominent regions of consideration when discussing the ABCFM and why the institution as a whole must be evaluated through a global lens.
-
+The American Board of Commissioners for Foreign Missions or the ABCFM was an American missionary organization that attempted to convert first the American continent and later launched a global effort to convert populations around the globe to Christianity. Originally an ecumenical organization, by the time of the Berlin Conference of 1884 (an event which only by happenstance coincides with the time period addressed below) the ABCFM had shifted to a Congregationalist approach. Despite its evangelist founding, the ABCFM eventually found its most effective method at conversion was through schooling, and as such, its missionaries founded schools and colleges throughout the world. This educational approach has received analysis from the historical community. However, what is more interesting is to consider the ABCFM in totality as an American evangelical network that attracted more than 500 missionaries abroad while the total membership in 1899 of the mission globally – namely all converts who became members of the church and were recorded as such – nudged close to 50,000 members. Despite the small size of the membership and missionary roles in comparison to the magnitude of the Catholic missionary effort several centuries before, the ABCFM at the end of the nineteenth century truly projected a global influence. 
 
 
 ```{r, layout = "l-body-outset", fig.width = 10, fig.height= 7, echo = FALSE, fig.cap= "Above are summaries of the number ABCFM missionaries internationally. A summary for the membership of the missions also appears above."}
@@ -63,6 +60,7 @@ missionaries2 %>%
 
 #add labels
 ```
+When considering the popular imagination of missionaries in China, the global imprint of the ABCFM recedes into the background, but the organization itself was expansive and must be considered as a global network with limited, fixed resources whose distribution was a contested issue from the perspective of missionaries abroad and the Board at home. In fact, missionaries saw themselves as part of a global enterprise with fixed resources that they needed to advocate for in competition with other missions within the network. Mary Logan, a female missionary to Chuuk, Micronesia during the 1880s and 1890s, advocated for the Micronesia mission in a letter to the corresponding secretary of the ABCFM, Judson Smith, arguing that another missionary couple should be “sav[ed] for Ponape” rather than sent to Mexico.^[Mary Logan letter to Judson Smith Nov 10, 1894. Micronesia Mission (ABC 19.4); Vol 12; Micronesia Mission; Letters L-P. Microfilm Reel 849. American Board of Commissioners for Foreign Missions Archives, 1810-1961 (ABC 1-91) Houghton Library, Harvard University.]
 
 ```{r, echo=FALSE}
 regions <- data_frame(
@@ -79,6 +77,13 @@ regions <- data_frame(
 )
 ```
 
+Based on summary statistics extracted from the Annual Reports of the American Board of Commissioners for Foreign Missions from 1884-1899, a quantitative analysis pushes back on the notion of missionary abundance in China in an effort to compel historians to acknowledge and investigate the implications of numerical centers of Board activity far from China.^[The data comes from a reading of the American Board Annual Reports from 1884-1899. For Specific mentions see, Seventy-Fourth Annual Report of the American Board of Commissioners for Foreign Missions, (Boston: Riverside Press, 1881); Seventy-Fifth Annual Report of the American Board of Commissioners for Foreign Missions, (Boston: Riverside Press, 1885); Seventy-Sixth Annual Report of the American Board of Commissioners for Foreign Missions, (Boston: Riverside Press, 1886); Seventy-Seventh Annual Report of the American Board of Commissioners for Foreign Missions, (Boston: Riverside Press, 1887); Seventy-Eighth Annual Report of the American Board of Commissioners for Foreign Missions, (Boston: Riverside Press, 1888); Seventy-Ninth Annual Report of the American Board of Commissioners for Foreign Missions, (Boston: Riverside Press, 1889); Eightieth Annual Report of the American Board of Commissioners for Foreign Missions, (Boston: Riverside Press, 1890); Eighty-First Annual Report of the American Board of Commissioners for Foreign Missions, (Boston: Riverside Press, 1891); Eighty-Second Annual Report of the American Board of Commissioners for Foreign Missions, (Boston: Riverside Press, 1892); Eighty-Third Annual Report of the American Board of Commissioners for Foreign Missions, (Boston: Riverside Press, 1893); Eighty-Fourth Annual Report of the American Board of Commissioners for Foreign Missions, (Boston: Riverside Press, 1894); Eighty-Fifth Annual Report of the American Board of Commissioners for Foreign Missions, (Boston: Riverside Press, 1895); Eighty-Sixth Annual Report of the American Board of Commissioners for Foreign Missions, (Boston: Riverside Press, 1896); Eighty-Seventh Annual Report of the American Board of Commissioners for Foreign Missions, (Boston: Riverside Press, 1897); Eighty-Eighth Annual Report of the American Board of Commissioners for Foreign Missions, (Boston: Riverside Press, 1898); Eighty-Ninth Annual Report of the American Board of Commissioners for Foreign Missions, (Boston: Riverside Press, 1899).] By illustrating the ABCFM’s presence globally and focusing on specific levels of high activity in previously neglected geographic nodes, this paper hopes to provide reasons as to why Japan and Turkey should become more prominent regions of consideration when discussing the ABCFM and why the institution as a whole must be evaluated through a global lens.
+
+```{r, echo = FALSE}
+rmarkdown::paged_table(missionaries2)
+
+```
+<figure><p class = "caption"> Table 1. Displays a summary of the data used for this analysis. All data points that appear NA are due to the absence of the information in ABCFM Annual Reports. </p></figure>
 ```{r, echo = FALSE}
 missionaries2_map <-
   missionaries2 %>% 
@@ -557,11 +562,12 @@ addLegend("bottomleft",
     )
 ```
 
-At first glance, the levels of American missionaries indicate little more than a large presence of American missionaries worldwide. However, when one addresses the physical locations of these missionaries, the expansive nature of the ABCFM as a global force jumps from the page with the visualization of an organization that maintained close to 500 missionaries in 21 separate missions across 4 continents and Oceania. In their highest concentrations, the numbers of American missionaries should indicate the level of interest the ABCFM theoretically had in specific missions. For example, until 1893, the largest regional concentration of American missionaries was the Ottoman Empire, yet the Turkish missions barely enter the historical record during this time period. The two notable topical exceptions to this general dismissal of the Turkish missions appear In the context of the Armenian genocide where historians acknowledge the presence of American Board missionaries as correspondents chronicling the event.^[For more on the ABCFM efforts to mobilize humanitarian aid in the contingent United States see Ian Tyrell, Reforming the World and Heather Curtis, Holy Humanitarians.] Though the historian Ian Tyrell concedes in his seminal work Reforming the World that “despite the growth of American missionary interest in India and China since the 1850s, the Ottoman Empire was still a leading American missionary field,” there has been little focus on the region in missionary histories outside of the Armenian genocide even though “it was the Americans among Western nations who had the strongest Christian mission presence there [the Ottoman Empire] in churches and Colleges.”^[Ian Tyrell, Reforming the World: The Creation of America’s Moral Empire, (Princeton: Princeton University Press, 2010), 104.]  In building on this topic, scholars have addressed the American presence in the Middle East in the form of the American University in Beirut as a tool to promulgate Westernization and as a form of evangelizing. The missionary presence in the Middle East was more than just “cultural imperialism” as Ussama Makdisi underscores while arguing in Artillery of Heaven for a consideration of “the originality of cultural spaces created by the intersection of American and Ottoman histories.”^[Ussama Makidisi, Artillery of Heaven, 9.]  Despite these references to the American missionaries in the Middle East and the powerful arguments of considering both the intersection of American missionaries and Middle East populaces and the role of Americans in promoting aspects of the “civilizing mission,” the recognition of the sheer volume of missionaries in the areas then controlled by the Ottoman Empire deserves consideration for that alone. The implications of the largest regional concentration of ABCFM missionaries abound for scholars of the Board and American internationalism in general.
 
-Despite the truism that missionaries are not necessarily western imperialists, the connections between American missionaries and the western civilizing mission remain pronounced when considering the missionary enterprise in totality. The historian of American religious aid during the late nineteenth and early twentieth century Heather Curtis notes that Americans worried that the colonial empire led to an exportation of civil vices such as drink into the world.^[Heather Curtis, Holy Humanitarians, 130.]  The fear of Christian influence being overwhelmed by secular deleterious influences provides further evidence of the implications that missionary activity coincided with a high level of secular interest. Even though Curtis’s reference was a specific reference to the context of missionary activity in the Philippines after the turn of the twentieth century, the pattern of American secular influences alongside American missionaries in the colonial dominions should raise the question of the extent to which American secular influences accompanied the significant presence of ABCFM missionaries in Turkey. The result should intrigue historians who, not normally concerned with the history of missions, may seek to deduce what the implications of close to one hundred missionaries in the Ottoman Empire were to American economic interests during the 1880s and 1890s.
+At first glance, the levels of American missionaries indicate little more than a large presence of American missionaries worldwide. However, when one addresses the physical locations of these missionaries, the expansive nature of the ABCFM as a global force jumps from the page with the visualization of an organization that maintained close to 500 missionaries in 23 separate missions across 4 continents and Oceania. In their highest concentrations, the numbers of American missionaries should reveal the points of extensive interest in ABCFM missions. For example, until 1893, the largest regional concentration of American missionaries was the Ottoman Empire, yet the Turkish missions barely enter the historiographic record. Though the historian Ian Tyrell concedes in his seminal work Reforming the World that “despite the growth of American missionary interest in India and China since the 1850s, the Ottoman Empire was still a leading American missionary field,” there has been little focus on the region in missionary histories outside of the Armenian genocide even though “it was the Americans among Western nations who had the strongest Christian mission presence there [the Ottoman Empire] in churches and Colleges.”^[Ian Tyrell, Reforming the World: The Creation of America’s Moral Empire, (Princeton: Princeton University Press, 2010), 104.]  As an exception to this general dismissal of the Turkish missions, the historian Usamma Makidis underscores how the missionary presence in the Middle East was more than just “cultural imperialism” while arguing in Artillery of Heaven for a consideration of “the originality of cultural spaces created by the intersection of American and Ottoman histories.”^[Ussama Makdisi, Artillery of Heaven: American Missionaries and the Failed Conversion of the Middle East, (Ithaca: Cornell University Press, 2008), 9. Kindle Ebook.]
 
-In an acknowledgement of the activity of the Chinese missions, the Chinese region of missions switched to the most populace mission in 1893. The ABCFM China mission had originated in 1830 when, as Kendall Johnson declares in his work The New Middle Kingdom: China and the Early American Romance of Free Trade, “American missionaries followed their merchant compatriots to Canton” and Rev. Elijah Coleman Bridgman arrived in China.^[Kendall Johnson, The New Middle Kingdom: China and the Early American Romance of Free Trade, 132.]  Despite a long history of missionary activity in the region, the population of American Board missionaries in China, while significant, was not the largest region of missionary activity. This then is surprising considering the longevity of the mission and the emphasis the Chinese missions have in the imagination of the American public. After 1893, the greatest regional concentration of missionaries did shift to China, but Turkey still remained the second or third largest concentration of missionaries, depending on the report year, for the remainder of this select time period: 1884-1899.
+Despite the truism that missionaries were not necessarily western imperialists, the connections between American missionaries and the western civilizing mission remain pronounced when considering the missionary enterprise in totality. Heather Curtis, a historian of American religious aid during the late nineteenth and early twentieth century, notes that Americans worried that the emerging colonial empire led to an exportation of civil vices such as drink into the world alongside the efforts of evangelicals to promote a more Godly world.^[Heather Curtis, Holy Humanitarians: American Evangelicals and Global Aid, (Cambridge: Harvard University Press, 2018), 130.]  Even though Curtis’s reference was a specific reference to the context of missionary activity in the Philippines after the turn of the twentieth century, the joint operation of secular and religious influences in areas of missionary activity should raise the question of the extent to which American secular influences accompanied the significant presence of ABCFM missionaries in Turkey. The result should intrigue historians of American internationalism who, not normally concerned with the history of missions, may seek to deduce what the implications of close to one hundred missionaries in the Ottoman Empire were to American economic interests during the 1880s and 1890s.
+
+
 
 ```{r,layout = "l-body-outset", fig.width = 7, fig.height= 5, echo = FALSE, fig.cap= "A breakdown of the change in missionary populations of all ABCFM missions that had a population of ten or more Aericans during any year from 1884-1899. ALl breaks in data are due to the statistics being unavailable for that year."}
 missionaries2 %>% 
@@ -577,7 +583,10 @@ missionaries2 %>%
 
 ```
 
-Despite the regional shift to China in the late 1890s, the largest single mission was still outside of China and surprisingly was the Japanese mission, which alternated between second and third most populated mission with Turkey from 1893-1899. The Japanese mission comes into view as the largest single concentration of Americans from 1887 thru to 1899. The level of American presence in Japan saw expansive rises in the late 1880s and remained high after that point. Scholars have not so much addressed this rise as attributed Christian influence in Japan to Japanese desires to westernize mostly through the presence of the American Board college in Kobe.  By contrast, the embodiment of American Christianity by over 10,000 Japanese persons deserves attention as a formative influence in the history of Japanese Christianity. 
+Turning away from the missions to Turkey, the popularly imagined activity in the Chinese missions is not completely without merit. In an acknowledgement of the activity of the Chinese missions, it should be noted that China surpassed Turkey as the most populous mission region for missionaries after 1893. Yet, this acknowledgement should be tempered with the realization that the ABCFM China mission had originated in 1830 when, as Kendall Johnson declares in his work The New Middle Kingdom: China and the Early American Romance of Free Trade, “American missionaries followed their merchant compatriots to Canton” and Rev. Elijah Coleman Bridgman arrived in China.^[Kendall Johnson, The New Middle Kingdom: China and the Early American Romance of Free Trade, (Baltimore: Johns Hopkins University Press, 2017), 132. ProQuest Ebook Central.]  While the greatest regional concentration of missionaries did shift to China after 1893, Turkey still remained the second or third largest concentration of missionaries, depending on the report year, through to 1899. 
+
+Despite the regional shift to China in the late 1890s, the largest single mission was still outside of China and surprisingly was the Japanese mission. The Japanese mission comes into view as the largest single mission concentration of Americans from 1887 thru to 1899. Though scholars have addressed Christian influence in Japan through studies on westernization at the former ABCFM college, now Doshisha University, they have yet to examine the implications of this large grouping of Americans in the rapidly westernizing Meiji Japan.^[A collection of dissertations dating to the 1940s have addressed the ABCFM colleges in Japan but not as one of the largest mission populations the ABCFM projected abroad. For More see: Majstorac-Kobiljski, Aleksandra. Learning to be modern: American missionary colleges in Beirut and Kyoto 1860–1920, (City University of New York, ProQuest Dissertations Publishing, 2010).]  
+
 
 
 
@@ -585,20 +594,6 @@ Despite the regional shift to China in the late 1890s, the largest single missio
 ```{r, echo = FALSE}
 
 #Creation of member summaries and membership shape files 
-spdf_world <- ne_countries()
-sf_world <- ne_countries(returnclass = "sf")
-sf_micronesia <- read_sf("micronesia")
-
-st_crs(sf_world) <- 4324
-st_crs(sf_micronesia) <- 4324
-
-names(sf_micronesia) <- names(sf_world) 
-sf_missionary_world <-
-rbind(sf_world, sf_micronesia)
-
-missionary_shapes <- sf_missionary_world %>% 
-  left_join(missionaries2_map, by = "name_long") 
-  
 
 mission_member_totals <- 
   missionaries2_map %>% 
@@ -754,116 +749,37 @@ mission_shapes_1899 <-
 
 <h2> Levels of Membership </h2>
 
-```{r, layout = "l-body-outset", fig.width = 10, fig.height= 7, echo = FALSE, fig.cap= "The map reprsents individual missions charting the membership of each Mission. The Missions are charted to one central location for each mission though there were multiple other stations within a given mission."}
+```{r,layout = "l-body-outset", fig.width = 10, fig.height= 7, echo = FALSE, fig.cap= "The figure displays the change over time of the individual ABCFM missions that had a membership in excess of 1000 members. The next figure depicts the growth or decrease of those same missions."}
+missionaries2 %>% 
+  filter(members > 1000) %>% 
+  group_by(year) %>% 
+  ggplot(aes(x = year))+
+  geom_line(aes(y = members))+
+  facet_wrap(~mission_name)+
+  labs(
+                title = paste("Membership in Individual Missions"),
+                   subtitle = paste("Changes in Mission Membership by Individual mission From 1884-1899")
+                     )
 
-missionsize <- function(x, max_radius = 25) {x %>% 
-    sqrt()%>% 
-    scales::rescale_max(to = c(0, max_radius))}
+missionaries2 %>% 
+  filter(members > 1000) %>% 
+  group_by(mission_name) %>%
+  mutate(growth = members - lag(members)) %>% 
+  ggplot(aes(x = year))+
+  geom_line(aes( y = growth))+
+  facet_wrap(~mission_name)+
+  labs(
+        title = paste("Individual mission growth"),
+         subtitle = paste("From 1884-1899")
+       )
 
-leaflet() %>% 
-  addTiles() %>% 
-  addCircleMarkers( data = missionaries_1884,
-                    radius = ~missionsize(missionaries_1884$members),
-                   label = ~mission_name,
-                   popup = ~paste(mission_name, ": ", members),
-                   group = "1884",
-                   color = "blue") %>% 
-  addCircleMarkers( data = missionaries_1885,
-                    radius = ~missionsize(missionaries_1885$members),
-                   label = ~mission_name,
-                   popup = ~paste(mission_name, year, ": ", members),
-                   group = "1885",
-                   color = "blue") %>% 
-  addCircleMarkers( data = missionaries_1886,
-                    radius = ~missionsize(members),
-                   label = ~mission_name,
-                   popup = ~paste(mission_name, ": ", members),
-                   group = "1886",
-                   color = "blue") %>% 
-  addCircleMarkers( data = missionaries_1887,
-                    radius = ~missionsize(members),
-                   label = ~mission_name,
-                   popup = ~paste(mission_name, ": ", members),
-                   group = "1887",
-                   color = "blue") %>% 
-  addCircleMarkers( data = missionaries_1888,
-                    radius = ~missionsize(members),
-                   label = ~mission_name,
-                   popup = ~paste(mission_name, ": ", members),
-                   group = "1888",
-                   color = "blue") %>% 
-  addCircleMarkers( data = missionaries_1889,
-                    radius = ~missionsize(members),
-                   label = ~mission_name,
-                   popup = ~paste(mission_name, ": ", members),
-                   group = "1889",
-                   color = "blue") %>% 
-  addCircleMarkers( data = missionaries_1890,
-                    radius = ~missionsize(members),
-                   label = ~mission_name,
-                   popup = ~paste(mission_name, ": ", members),
-                   group = "1890",
-                   color = "blue") %>% 
-  addCircleMarkers( data = missionaries_1891,
-                    radius = ~missionsize(members),
-                   label = ~mission_name,
-                   popup = ~paste(mission_name, ": ", members),
-                   group = "1891",
-                   color = "blue") %>% 
-  addCircleMarkers( data = missionaries_1892,
-                    radius = ~missionsize(members),
-                   label = ~mission_name,
-                   popup = ~paste(mission_name, ": ", members),
-                   group = "1892",
-                   color = "blue") %>% 
-  addCircleMarkers( data = missionaries_1893,
-                    radius = ~missionsize(members),
-                   label = ~mission_name,
-                   popup = ~paste(mission_name, ": ", members),
-                   group = "1893",
-                   color = "blue") %>% 
-  addCircleMarkers( data = missionaries_1894,
-                    radius = ~missionsize(members),
-                   label = ~mission_name,
-                   popup = ~paste(mission_name, ": ", members),
-                   group = "1894",
-                   color = "blue") %>% 
-  addCircleMarkers( data = missionaries_1895,
-                    radius = ~missionsize(members),
-                   label = ~mission_name,
-                   popup = ~paste(mission_name, ": ", members),
-                   group = "1895",
-                   color = "blue") %>% 
-  addCircleMarkers( data = missionaries_1896,
-                    radius = ~missionsize(members),
-                   label = ~mission_name,
-                   popup = ~paste(mission_name, ": ", members),
-                   group = "1896",
-                   color = "blue") %>% 
-  addCircleMarkers( data = missionaries_1897,
-                    radius = ~missionsize(members),
-                   label = ~mission_name,
-                   popup = ~paste(mission_name, ": ", members),
-                   group = "1897",
-                   color = "blue") %>% 
-  addCircleMarkers( data = missionaries_1898,
-                    radius = ~missionsize(members),
-                   label = ~mission_name,
-                   popup = ~paste(mission_name, ": ", members),
-                   group = "1898",
-                   color = "blue") %>% 
-  addCircleMarkers( data = missionaries_1899,
-                    radius = ~missionsize(members),
-                   label = ~mission_name,
-                   popup = ~paste(mission_name, ": ", members),
-                   group = "1899",
-                   color = "blue") %>% 
-  addLayersControl(
-  baseGroups =  c("1884", "1885","1886", "1887", "1888", "1889", "1890", "1891", "1892", "1893", "1894", "1895", "1896", "1897", "1898", "1899"))
-  
 ```
 
-```{r, layout = "l-body-outset", fig.width = 12, fig.height= 7, echo = FALSE, fig.cap= "The map reflects the concentration of membership in the ABCFM on a regional basis. THe concentrations of membership reflect the cummulative total of missions in that given region. As such, the individual missions do not appear but the total of members appears above. Japan and Turkey hold the highest concentrations in each year."}
+As an example of a single mission, the American Board mission to Japan also attracted the most members. The embodiment of American Christianity by over 10,000 Japanese persons deserves attention as a formative influence in the history of Japanese Christianity.^[For more on Japanese Christianity see Mullins, Mark, Christianity Made in Japan: A study of Indigenous Movements, (Honolulu: University of Hawaii Press, 1998).] Following an exponential rise in membership during the 1880s from a membership total barely exceeding 2,500, the membership of the Japan mission peaked in 1893 at over 12,000 members. By far the largest concentration of ABCFM members, this figure surpassed all other missions when considered as both a regional area of mission activity and a specific mission from 1889-1899 and comprised over 20 percent of the total membership the ABCFM attracted internationally.^[As a specific mission, Japan surpassed all other missions in 1886 (see figure 5).] The Japanese membership decreased in 1894 to coincide with the First Sino-Japanese War indicating that ABCFM members likely were conscripted into service in the Imperial army which raises the query, though likely a stretch, of the extent to which Japanese Christians who took part in the First-Sino Japanese War interacted with Korean Christians and what intellectual and cultural spaces were produced through interactions between the two groups. However, in reviewing these numbers and the presence of the American Board in Japan, historians should reevaluate their notions of Japanese religious attitudes and of the spaces in which Japanese citizens pursued Westernization.
+
+In perhaps the most dramatic mission station, Micronesia saw losses and gains in membership that reflected the turbulent nature of the mission. Over a 16 year period, the Micronesia mission gained over 1000 members in two different years and lost 1000 members in two separate years. With these dramatic changes in membership, the actual progress of the mission and the interpersonal dynamics of the missionary community deserve further attention to illuminate the reasons for these drastic swings in membership and to explore the record keeping politics of the Micronesian mission and the ABCFM in general.
+
+```{r, layout = "l-body-outset", fig.width = 10, fig.height= 7, echo = FALSE, fig.cap= "The map reflects the concentration of membership in the ABCFM on a regional basis. THe concentrations of membership reflect the cummulative total of missions in that given region. As such, the individual missions do not appear but the total of members appears above. Japan and Turkey hold the highest concentrations in each year.^[A technical difficulty has prevented this figure from printing as figure 8 but it should be figure 8 and the following map should appear as figure 9]"}
 mission_member_colors <- colorNumeric("PuRd", domain = c(0, 14000))
 
 
@@ -990,50 +906,129 @@ addLegend("bottomleft",
     title = "ABCFM Membership by Region")
 ```
 
-As an example of a single mission, the American Board mission to Japan also attracted the most members. Following an exponential rise in membership during the 1880s, the membership of the Japan mission peaked in 1893 at over 12,000 members. By far the largest American Board mission, this figure surpassed all other missions from 1887-1899  and comprised over 20 percent of the total membership the ABCFM attracted internationally. The Japanese membership decreased in 1894 to coincide with the First Sino-Japanese War indicating that ABCFM members likely were conscripted into service in the Imperial army which raises the query, though likely a stretch, of the extent to which Japanese Christians who took part in the First-Sino Japanese War interacted with Korean Christians and what intellectual and cultural spaces were produced through interactions between the two groups. However, in reviewing these numbers and the presence of the American Board in Japan, historians should reevaluate their notions of Japanese religious attitudes and of the spaces in which Japanese citizens pursued Westernization.
+```{r, layout = "l-body-outset", fig.width = 10, fig.height= 7, echo = FALSE, fig.cap = "The map reflects the concentration of membership in each specific ABCFM mission from 1884-1899."}
 
-```{r,layout = "l-body-outset", fig.width = 10, fig.height= 7, echo = FALSE, fig.cap= "The figure displays the change over time of the individual ABCFM missions that had a membership in excess of 1000 members. The next figure depicts the growth or decrease of those same missions."}
-missionaries2 %>% 
-  filter(members > 1000) %>% 
-  group_by(year) %>% 
-  ggplot(aes(x = year))+
-  geom_line(aes(y = members))+
-  facet_wrap(~mission_name)+
-  labs(
-                title = paste("Membership in Individual Missions"),
-                   subtitle = paste("Changes in Mission Membership by Individual mission From 1884-1899")
-                     )
+missionsize <- function(x, max_radius = 25) {x %>% 
+    sqrt()%>% 
+    scales::rescale_max(to = c(0, max_radius))}
 
-missionaries2 %>% 
-  filter(members > 1000) %>% 
-  group_by(mission_name) %>%
-  mutate(growth = members - lag(members)) %>% 
-  ggplot(aes(x = year))+
-  geom_line(aes( y = growth))+
-  facet_wrap(~mission_name)+
-  labs(
-        title = paste("Individual mission growth"),
-         subtitle = paste("From 1884-1899")
-       )
-
+leaflet() %>% 
+  addTiles() %>% 
+  addCircleMarkers( data = missionaries_1884,
+                    radius = ~missionsize(missionaries_1884$members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1884",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1885,
+                    radius = ~missionsize(missionaries_1885$members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, year, ": ", members),
+                   group = "1885",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1886,
+                    radius = ~missionsize(members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1886",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1887,
+                    radius = ~missionsize(members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1887",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1888,
+                    radius = ~missionsize(members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1888",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1889,
+                    radius = ~missionsize(members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1889",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1890,
+                    radius = ~missionsize(members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1890",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1891,
+                    radius = ~missionsize(members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1891",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1892,
+                    radius = ~missionsize(members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1892",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1893,
+                    radius = ~missionsize(members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1893",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1894,
+                    radius = ~missionsize(members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1894",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1895,
+                    radius = ~missionsize(members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1895",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1896,
+                    radius = ~missionsize(members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1896",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1897,
+                    radius = ~missionsize(members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1897",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1898,
+                    radius = ~missionsize(members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1898",
+                   color = "blue") %>% 
+  addCircleMarkers( data = missionaries_1899,
+                    radius = ~missionsize(members),
+                   label = ~mission_name,
+                   popup = ~paste(mission_name, ": ", members),
+                   group = "1899",
+                   color = "blue") %>% 
+  addLayersControl(
+  baseGroups =  c("1884", "1885","1886", "1887", "1888", "1889", "1890", "1891", "1892", "1893", "1894", "1895", "1896", "1897", "1898", "1899"))
+  
 ```
 
-In perhaps the most dramatic mission station, Micronesia saw losses and gains in membership that reflected the turbulent nature of the mission. Over a 16 year period, the Micronesia mission gained over 1000 members in two different years and lost 1000 members in two separate years. With these dramatic changes in membership, the actual progress of the mission and the interpersonal dynamics of the missionary community deserve further attention to illuminate the reasons for these drastic swings in membership.
+If levels of membership are analyzed at the regional level, the level of “native” membership in the Turkish mission parallels the high regional concentration of American missionaries. The total membership levels increased steadily from 1884-1899 to achieve a population close to 10,000 members by 1899. In conjunction with the realization that growth of the four Turkish missions remained relatively negligible throughout the period (see Figure 5) this level of membership demonstrates that a sizeable and permanent congregation had been built in Turkey. When one considers the length of time the American Board had retained a presence in Turkey – since 1819, the large presence of Americans becomes less astounding and the level of members even less so.^[Artillery of Heaven addresses in depth American efforts at conversion in the Arab world. Other works do so as well, but not with any emphasis on the numerically significant portion of members the Turkish mission represented.] The consideration of mission longevity does not negate the importance of the size of the large convert groups in Turkey; rather, the size of the communities makes it all the more astounding that almost a century after the original inception of ABCFM missions in Turkey, the ABCFM still needed approximately 100 American missionaries to staff missions in the Ottoman Empire indicating a lack of divestment of authority to a highly educated society.
 
-If levels of membership are analyzed at the regional level, the level of “native” membership in the Turkish mission parallels the high regional concentration of American missionaries. The membership levels remained relatively constant around 10,000 members throughout the period. In conjunction with the realization that growth of the Turkish missions remained relatively negligible throughout the period (see Figure 5) this level of membership demonstrates that the membership of the Turkish missions remained constant with minimal growth but minimal loss. In another historically significant region for membership, India emerges as a consistently populated region of the ABCFM mission. The low level of Americans in this region raises the idea of successful transference of control of the mission to native authorities but the Turkish missions were not as successful as the mission to Hawaii had been considering the complete divestment of ABCFM authority to the HBCFM by this point. An important consideration to keep in mind when considering the Turkish missions and the Indian missions remains the longevity of missions. When one considers the length of time the American Board had retained a presence in Turkey – since 1819, the large presence of Americans becomes less astounding and the level of members even less so.  Complementing this discussion, the mission to India had been in effect since the early nineteenth century and was a focus of aid during the 1890s.  The consideration of mission longevity does not negate the importance of the size of the large convert groups in Turkey and India American Board communities. In fact, the size of the communities makes it all the more astounding that almost a century after the original inception of ABCFM missions in Turkey, the ABCFM still needed approximately 100 American missionaries to staff missions in the Ottoman Empire, and a significant number of Americans to remain in India indicating a lack of divestment of authority to two highly educated societies.
+In another historically significant region for membership, India emerges as a consistently populated region of the ABCFM mission. The low level of Americans in this region raises the idea of successful transference of control of the mission to native authorities but the mission to India like the Turkish mission had been in effect since the early nineteenth century and was a focus of aid during the 1890s.^[See Ian Tyrell and Heather Curtis for a detailed description of American evangelical aid to India during the famine of the 1890s.] 
 
+China, in contrast, shows one of the smallest membership totals for one of the longest lived missions. Its budding level of membership then does not awe nor should it underwhelm the viewer. At the end of the sixteen year period (1884-1899) analyzed above, China had a total regional membership role of 5,525 (see figure 8). The mission does not have the dramatic rises and falls of the Japanese mission; instead, the growth from 1174 in 1885 reveals a mission similar to the stalwarts of the ABCFM institutional memory – Turkey and India (see figure 6). That being said, the four Chinese missions did include two astonishingly small member rolls in Hong Kong and Shanse (See Data Table from Figure 1). Shanse, in fact, had fewer members than missionaries for a number of its years in existence. Though it is unfair to judge a new mission on the basis of established mission statistics, the disparity in numbers highlights the minimal size of conversions in China to the ABCFM during this period. The relatively small to middling size of Chinese mission stations then stands in contrast to the popular notion of China as the center for American missionary activity. Following this point, the level of membership drives a new evaluation of the ABCFM missions as successful harbingers of Christianity and to what extent the proselytizing message embraced the missionizing forces.
 
-China, in contrast, shows one of the smallest membership totals for one of the longest lived missions. Its budding level of membership then does not awe the viewer nor should it underwhelm the viewer. At the end of the sixteen year period (1884-1899) analyzed above, China had a total regional membership role in the range of 6,000. The mission does not have the dramatic rises and falls of the Japanese mission; instead, the steady growth reveals a mission similar to the stalwarts of the ABCFM institutional memory – Turkey and India. That being said, the four Chinese missions did include two astonishingly small member rolls in Hong Kong and Shanse (See Data Table from Figure 1). Shanse, in fact, had fewer members than missionaries for a number of its years in existence. Though it is unfair to judge a new mission on the basis of established mission statistics, the disparity in numbers highlights the minimal size of conversions in China to the ABCFM during this period. The relatively small to middling size of Chinese mission stations then stands in contrast to the popular notion of China as the center for American missionary activity (in the instance of the ABCFM). Following this point, the level of membership drives a new evaluation of the ABCFM missions in relation to other missions within the wider community.
 
 <h2>Conclusion</h2>
 
-Whether it be Christian communities in Micronesia, schools still in existence in South Africa, or American Colleges in the Middle East, the ABCFM left its mark on the cultures of the regions it attempted to convert to Congregational Christianity. The levels of Americans and the levels of indigenous Christians produced by the ABCFM have historical implications for three fields. In demonstrating the sheer size of the mission from the perspectives of both the American and target areas of conversion points of view, historians who discount missionaries as a minor player must contend with the results of the missions whereby over 40,000 and close to 50,000 members had joined ABCFM congregations as full congregationalist members by 1899. Meanwhile, the field of American international history must acknowledge the surprising displacement of the ABCFM missionaries and investigate the high concentration of American missionaries in the Mediterranean and in Japan, not just as missionaries but as self-described representatives of American influence, a concept the missionaries themselves embodied and which recent scholarship such as Emily Conroy-Krutz’s field shaping work Christian Imperialism has ascribed to the global movement.  Lastly, the wide geographic disbursement of the missions and the ebbs and flows of the mission force historians to acknowledge the global nature of the ABCFM mission as they move forward to address the ABCFM as a global entity with presence in areas previously relegated to episodic events, and to consider the large fluctuations and those dramatic flows with implications for indigenous Christian formations.
+Whether it be Christian communities in Micronesia, or American Colleges in the Middle East and Japan, the ABCFM left its mark on the cultures of the regions it attempted to convert. The numbers of Americans who journeyed forth into the world and the levels of indigenous Christians produced by the ABCFM have historical implications for a number of historical subfields. As a force in American and Global religious history, the sheer size of the mission from the perspectives of both the American and target areas of conversion points of view should compel historians to contend with the results of the missions whereby over 40,000 and close to 50,000 members had joined ABCFM congregations as full congregationalist members by 1899. Meanwhile, the field of American international history must acknowledge the surprising displacement of the ABCFM missionaries and investigate the high concentration of American missionaries in the Mediterranean and in Japan, not just as missionaries but as self-described representatives of American influence, a concept the missionaries themselves articulated, and which recent scholarship such as Emily Conroy-Krutz’s field shaping work Christian Imperialism has ascribed to the global movement.  Lastly, the wide geographic disbursement of the missions and the ebbs and flows of the mission force historians to acknowledge the expansive nature of the ABCFM mission as they move forward to address the ABCFM as a global entity with presence in areas previously relegated to episodic events, and to consider the large fluctuations and those dramatic flows with implications for indigenous Christian formations.
 
+##Acknowledgments
 
-Distill is a publication format for scientific and technical writing, native to the web. 
-
-Learn more about using Distill for R Markdown at <https://rstudio.github.io/distill>.
-
+The skills necessary for this project were learned through a semester in a George Mason University Graduate Seminar titled Creating History in New Media. Thankfulness is extended to all in that seminar.
 
 
 
