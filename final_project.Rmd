@@ -30,7 +30,7 @@ missionaries2$converts <- as.numeric(missionaries2$converts)
 The American Board of Commissioners for Foreign Missions or the ABCFM was an American missionary organization that attempted to convert first the American continent and later launched a global effort to convert populations around the globe to Christianity. Originally an ecumenical organization, by the time of the Berlin Conference of 1884 (an event which only by happenstance coincides with the time period addressed below) the ABCFM had shifted to a Congregationalist approach. Despite its evangelist founding, the ABCFM eventually found its most effective method at conversion was through schooling, and as such, its missionaries founded schools and colleges throughout the world. This educational approach has received analysis from the historical community. However, what is more interesting is to consider the ABCFM in totality as an American evangelical network that attracted more than 500 missionaries abroad while the total membership in 1899 of the mission globally – namely all converts who became members of the church and were recorded as such – nudged close to 50,000 members. Despite the small size of the membership and missionary roles in comparison to the magnitude of the Catholic missionary effort several centuries before, the ABCFM at the end of the nineteenth century truly projected a global influence. 
 
 
-```{r, layout = "l-body-outset", fig.width = 10, fig.height= 7, echo = FALSE, fig.cap= "Above are summaries of the number ABCFM missionaries internationally. A summary for the membership of the missions also appears above."}
+```{r, layout = "l-body-outset", fig.width = 7, fig.height= 5, echo = FALSE, fig.cap= "Above are summaries of the number ABCFM missionaries internationally. A summary for the membership of the missions also appears above."}
 
 missionaries2 %>% 
   group_by(year) %>% 
@@ -328,7 +328,7 @@ american_shapes_1899 <-
 Levels of Americans
 </h1> 
 
-```{r, layout = "l-body-outset", fig.width = 10, fig.height= 7, echo = FALSE, fig.cap= "Map of Individual Missions Charting the American presence of missionaries in each Mission. The Missions are charted to one central location for each mission though there were multiple other stations within a given mission."}
+```{r, layout = "l-body-outset", fig.width = 7, fig.height= 5, echo = FALSE, fig.cap= "Map of Individual Missions Charting the American presence of missionaries in each Mission. The Missions are charted to one central location for each mission though there were multiple other stations within a given mission."}
 missionsize2 <- function(x, max_radius = 10) {x %>% 
     sqrt()%>% 
     scales::rescale_max(to = c(0, max_radius))}
@@ -437,7 +437,7 @@ leaflet() %>%
 
 ```
 
-```{r,layout = "l-body-outset", fig.width = 10, fig.height= 7, echo = FALSE, fig.cap= "Map of Missions Charting the American presence of missionaries by region from 1884-1899. The Missions are charted based on modern-day national boundaries and may not reflect the exact dispositon of missionaries worldwide. For example, the missions to Turkey included four missions which stretched from present-day Tunisia to the Levant. The mission to Micronesia likewise included a number of missions on several different islands but is represented as being located in present day Pohnpei."}
+```{r,layout = "l-body-outset", fig.width = 7, fig.height= 5, echo = FALSE, fig.cap= "Map of Missions Charting the American presence of missionaries by region from 1884-1899. The Missions are charted based on modern-day national boundaries and may not reflect the exact dispositon of missionaries worldwide. For example, the missions to Turkey included four missions which stretched from present-day Tunisia to the Levant. The mission to Micronesia likewise included a number of missions on several different islands but is represented as being located in present day Pohnpei."}
 leaflet() %>% 
   addTiles() %>% 
   addPolygons(data = american_shapes_1884,
@@ -749,7 +749,7 @@ mission_shapes_1899 <-
 
 <h2> Levels of Membership </h2>
 
-```{r,layout = "l-body-outset", fig.width = 10, fig.height= 7, echo = FALSE, fig.cap= "The figure displays the change over time of the individual ABCFM missions that had a membership in excess of 1000 members. The next figure depicts the growth or decrease of those same missions."}
+```{r,layout = "l-body-outset", fig.width = 7, fig.height= 5, echo = FALSE, fig.cap= "The figure displays the change over time of the individual ABCFM missions that had a membership in excess of 1000 members. The next figure depicts the growth or decrease of those same missions."}
 missionaries2 %>% 
   filter(members > 1000) %>% 
   group_by(year) %>% 
@@ -779,7 +779,7 @@ As an example of a single mission, the American Board mission to Japan also attr
 
 In perhaps the most dramatic mission station, Micronesia saw losses and gains in membership that reflected the turbulent nature of the mission. Over a 16 year period, the Micronesia mission gained over 1000 members in two different years and lost 1000 members in two separate years. With these dramatic changes in membership, the actual progress of the mission and the interpersonal dynamics of the missionary community deserve further attention to illuminate the reasons for these drastic swings in membership and to explore the record keeping politics of the Micronesian mission and the ABCFM in general.
 
-```{r, layout = "l-body-outset", fig.width = 10, fig.height= 7, echo = FALSE, fig.cap= "The map reflects the concentration of membership in the ABCFM on a regional basis. THe concentrations of membership reflect the cummulative total of missions in that given region. As such, the individual missions do not appear but the total of members appears above. Japan and Turkey hold the highest concentrations in each year.^[A technical difficulty has prevented this figure from printing as figure 8 but it should be figure 8 and the following map should appear as figure 9]"}
+```{r, layout = "l-body-outset", fig.width = 7, fig.height= 5, echo = FALSE, fig.cap= "The map reflects the concentration of membership in the ABCFM on a regional basis. THe concentrations of membership reflect the cummulative total of missions in that given region. As such, the individual missions do not appear but the total of members appears above. Japan and Turkey hold the highest concentrations in each year.^[A technical difficulty has prevented this figure from printing as figure 8 but it should be figure 8 and the following map should appear as figure 9]"}
 mission_member_colors <- colorNumeric("PuRd", domain = c(0, 14000))
 
 
@@ -906,7 +906,7 @@ addLegend("bottomleft",
     title = "ABCFM Membership by Region")
 ```
 
-```{r, layout = "l-body-outset", fig.width = 10, fig.height= 7, echo = FALSE, fig.cap = "The map reflects the concentration of membership in each specific ABCFM mission from 1884-1899."}
+```{r, layout = "l-body-outset", fig.width = 7, fig.height= 5, echo = FALSE, fig.cap = "The map reflects the concentration of membership in each specific ABCFM mission from 1884-1899."}
 
 missionsize <- function(x, max_radius = 25) {x %>% 
     sqrt()%>% 
@@ -1025,11 +1025,4 @@ China, in contrast, shows one of the smallest membership totals for one of the l
 <h2>Conclusion</h2>
 
 Whether it be Christian communities in Micronesia, or American Colleges in the Middle East and Japan, the ABCFM left its mark on the cultures of the regions it attempted to convert. The numbers of Americans who journeyed forth into the world and the levels of indigenous Christians produced by the ABCFM have historical implications for a number of historical subfields. As a force in American and Global religious history, the sheer size of the mission from the perspectives of both the American and target areas of conversion points of view should compel historians to contend with the results of the missions whereby over 40,000 and close to 50,000 members had joined ABCFM congregations as full congregationalist members by 1899. Meanwhile, the field of American international history must acknowledge the surprising displacement of the ABCFM missionaries and investigate the high concentration of American missionaries in the Mediterranean and in Japan, not just as missionaries but as self-described representatives of American influence, a concept the missionaries themselves articulated, and which recent scholarship such as Emily Conroy-Krutz’s field shaping work Christian Imperialism has ascribed to the global movement.  Lastly, the wide geographic disbursement of the missions and the ebbs and flows of the mission force historians to acknowledge the expansive nature of the ABCFM mission as they move forward to address the ABCFM as a global entity with presence in areas previously relegated to episodic events, and to consider the large fluctuations and those dramatic flows with implications for indigenous Christian formations.
-
-##Acknowledgments
-
-The skills necessary for this project were learned through a semester in a George Mason University Graduate Seminar titled Creating History in New Media. Thankfulness is extended to all in that seminar.
-
-
-
 
